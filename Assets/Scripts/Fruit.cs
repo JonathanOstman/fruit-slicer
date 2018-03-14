@@ -17,6 +17,8 @@ public class Fruit : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 
+        ScoreScript.highScore = PlayerPrefs.GetInt(ScoreScript.highScoreKey, 5);
+
         //ScoreScript.score.text = "Poäng : " + ScoreScript.scoreValue.ToString();
 
     }
@@ -36,9 +38,15 @@ public class Fruit : MonoBehaviour {
 
             ScoreScript.scoreValue += 5;
             //ScoreScript.score.text = ScoreScript.scoreValue.ToString();
-            Debug.Log(ScoreScript.scoreValue);
+            //Debug.Log(ScoreScript.scoreValue);
+            if (ScoreScript.scoreValue > ScoreScript.highScore)
+            {
+                PlayerPrefs.SetInt(ScoreScript.highScoreKey, ScoreScript.scoreValue);
+                Debug.Log("Highscore is:" + ScoreScript.highScore);
+            }
         }
     }
+
     void OnBecameInvisible()
     {
         missedFruit += 1;

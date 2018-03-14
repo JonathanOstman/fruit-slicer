@@ -6,8 +6,17 @@ public class ScoreScript : MonoBehaviour {
     public static int scoreValue = 0;
     public Text score;
 
-	// Update is called once per frame
-	void Update () {
+    public static int highScore;
+    public static string highScoreKey = "HighScore";
+
+
+    // Update is called once per frame
+    void Update () {
         score.text = scoreValue.ToString();
 	}
+
+    public void ResetHighScore()
+    {
+        PlayerPrefs.DeleteKey(highScoreKey);
+    }
 }
