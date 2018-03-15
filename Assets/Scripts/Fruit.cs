@@ -17,7 +17,6 @@ public class Fruit : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
 
-        ScoreScript.highScore = PlayerPrefs.GetInt(ScoreScript.highScoreKey, 5);
 
         //ScoreScript.score.text = "Poäng : " + ScoreScript.scoreValue.ToString();
 

@@ -13,6 +13,7 @@ public class ScoreScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         score.text = scoreValue.ToString();
+        highScore = PlayerPrefs.GetInt(highScoreKey, 5);
 	}
 
     public void ResetHighScore()
