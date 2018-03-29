@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Blade
+  - Fruit
+  - FruitSpawner
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,25 +13,29 @@ public class FruitSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(SpawnFruits());
+        StartCoroutine(SpawnFruits());  
 	}
 	
-    IEnumerator SpawnFruits()
+    public IEnumerator SpawnFruits()
     {
         while (true)
         {
-            float delay = Random.Range(minDelay, maxDelay);
+            float delay = UnityEngine.Random.Range(minDelay, maxDelay);
             yield return new WaitForSeconds(delay);
 
-            int spawnIndex = Random.Range(0, spawnPoints.Length);
+            int spawnIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
             Transform spawnPoint = spawnPoints[spawnIndex];
 
-            
-
             GameObject spawnedFruit = Instantiate(fruitPrefab, spawnPoint.position, spawnPoint.rotation);
+
             Destroy(spawnedFruit, 5f);
 
         }
     }
+   void Update()
+    {
+
+    }
+
 
 }

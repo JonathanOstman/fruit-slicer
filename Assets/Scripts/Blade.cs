@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blade : MonoBehaviour {
+public class Blade : MonoBehaviour
+{
 
     //public GameObject bladeTrailPrefab;
     public float minCuttingVelocity = .001f;
 
+    public float followSpeed = 8.0f;
+    public float distanceFromCamera = 5.0f;
+
+
     bool isCutting = false;
 
-    Vector2 previousPosition;
+    Vector3 previousPosition;
 
     //GameObject currentBladeTrail;
 
@@ -17,7 +22,7 @@ public class Blade : MonoBehaviour {
     Camera cam;
     CircleCollider2D circleCollider;
 
-    public Vector3 velocity
+    public Vector3 Velocity
     {
         get;
         private set;
@@ -47,15 +52,24 @@ public class Blade : MonoBehaviour {
         {
             UpdateCut();
         }
+
+
+
+
     }
 
 
     void StartCutting()
     {
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mouseScreenToWorld = cam.ScreenToWorldPoint(mousePosition);
         isCutting = true;
         //currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
-        previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        previousPosition = Vector3.Lerp(previousPosition, mouseScreenToWorld, 1.0f - Mathf.Exp(-followSpeed * Time.deltaTime));
         circleCollider.enabled = false;
+        mousePosition.z = distanceFromCamera;
+
+
     }
 
     void StopCutting()
@@ -67,11 +81,15 @@ public class Blade : MonoBehaviour {
     }
     void UpdateCut()
     {
-        Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mouseScreenToWorld = cam.ScreenToWorldPoint(mousePosition);
+        Vector3 newPosition = Vector3.Lerp(previousPosition, mouseScreenToWorld, 1.0f - Mathf.Exp(-followSpeed * Time.deltaTime));
         rb.position = newPosition;
+        mousePosition.z = distanceFromCamera;
 
-        velocity = (newPosition - previousPosition);
-        float distance = velocity.magnitude;
+
+        Velocity = (newPosition - previousPosition);
+        float distance = Velocity.magnitude;
         float speed = distance / Time.deltaTime;
         if (speed > minCuttingVelocity)
         {
@@ -83,5 +101,6 @@ public class Blade : MonoBehaviour {
         }
 
         previousPosition = newPosition;
+
     }
 }

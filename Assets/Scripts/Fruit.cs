@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Fruit : MonoBehaviour {
 
     public GameObject fruitSlicedPrefab;
     public float startForce = 13f;
 
-    public static int missedFruit = 0;
+    public static int missedFruit = 1;
 
-    Rigidbody2D rb;
+    static Rigidbody2D rb;
 
     void Start()
     {
@@ -27,7 +24,7 @@ public class Fruit : MonoBehaviour {
         if (col.tag == "Blade")
         {
             Blade blade = col.GetComponent<Blade>();
-            Vector3 direction = ((blade != null) ? blade.velocity : col.transform.position - transform.position).normalized; 
+            Vector3 direction = ((blade != null) ? blade.Velocity : col.transform.position - transform.position).normalized; 
 
             Quaternion rotation = Quaternion.LookRotation(direction);
 
@@ -41,7 +38,7 @@ public class Fruit : MonoBehaviour {
             if (ScoreScript.scoreValue > ScoreScript.highScore)
             {
                 PlayerPrefs.SetInt(ScoreScript.highScoreKey, ScoreScript.scoreValue);
-                Debug.Log("Highscore is:" + ScoreScript.highScore);
+                Debug.Log("Highscore is:" + (ScoreScript.highScore += 5));
             }
         }
     }
