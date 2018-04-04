@@ -11,9 +11,4 @@ public class Settings : MonoBehaviour {
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("graphics", 2));
         Screen.fullScreen = PlayerPrefs.GetInt("fullscreen") == 1 ? true : false;
     }
-
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

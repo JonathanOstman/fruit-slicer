@@ -13,10 +13,6 @@ public class Fruit : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
-
-
-        //ScoreScript.score.text = "Poäng : " + ScoreScript.scoreValue.ToString();
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -33,12 +29,9 @@ public class Fruit : MonoBehaviour {
             Destroy(gameObject);
 
             ScoreScript.scoreValue += 5;
-            //ScoreScript.score.text = ScoreScript.scoreValue.ToString();
-            //Debug.Log(ScoreScript.scoreValue);
             if (ScoreScript.scoreValue > ScoreScript.highScore)
             {
                 PlayerPrefs.SetInt(ScoreScript.highScoreKey, ScoreScript.scoreValue);
-                Debug.Log("Highscore is:" + (ScoreScript.highScore += 5));
             }
         }
     }

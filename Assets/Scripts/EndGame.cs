@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour {
@@ -21,7 +19,6 @@ public class EndGame : MonoBehaviour {
         //       if (timeLeft < 0)
         //       {
         //           GameOver();
-        //           Debug.Log("Game over");
         //       }
         if (GameObject.FindGameObjectWithTag("Fruit"))
         {
@@ -54,7 +51,6 @@ public class EndGame : MonoBehaviour {
 
     void GameOver()
     {
-        
         SceneManager.LoadScene(3);
     }
 }

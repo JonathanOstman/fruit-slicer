@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class FruitSpawner : MonoBehaviour {
@@ -11,7 +9,6 @@ public class FruitSpawner : MonoBehaviour {
     public float minDelay = .1f;
     public float maxDelay = 1f;
 
-	// Use this for initialization
 	void Start () {
         StartCoroutine(SpawnFruits());  
 	}
@@ -32,10 +29,4 @@ public class FruitSpawner : MonoBehaviour {
 
         }
     }
-   void Update()
-    {
-
-    }
-
-
 }

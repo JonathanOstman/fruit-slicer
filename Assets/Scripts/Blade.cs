@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
@@ -64,7 +62,6 @@ public class Blade : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Vector3 mouseScreenToWorld = cam.ScreenToWorldPoint(mousePosition);
         isCutting = true;
-        //currentBladeTrail = Instantiate(bladeTrailPrefab, transform);
         previousPosition = Vector3.Lerp(previousPosition, mouseScreenToWorld, 1.0f - Mathf.Exp(-followSpeed * Time.deltaTime));
         circleCollider.enabled = false;
         mousePosition.z = distanceFromCamera;
@@ -75,8 +72,6 @@ public class Blade : MonoBehaviour
     void StopCutting()
     {
         isCutting = false;
-        //currentBladeTrail.transform.SetParent(null);
-        //Destroy(currentBladeTrail, 2f);
         circleCollider.enabled = false;
     }
     void UpdateCut()

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class LastScore : MonoBehaviour {
@@ -13,8 +11,4 @@ public class LastScore : MonoBehaviour {
         score.text = "Score: " + PlayerPrefs.GetInt("lastScore").ToString();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
